@@ -3,18 +3,16 @@ import json
 
 import requests
 
-# Use Like python githubber.py JASchilz
-# (or another user name)
+def get_user_info(user):
+    response = requests.get(f"https://api.github.com/users/{user}/events")
+    event_data = json.loads(response.content)
+    latest_event = f"{event_data[0]['actor']['login']}'s latest event "\
+                   f"was a {event_data[0]['type']}, which occurred at "\
+                   f"{event_data[0]['created_at']}"
+
+    return latest_event
 
 if __name__ == "__main__":
     username = sys.argv[1]
-
-    # TODO:
-    #
-    # 1. Retrieve a list of "events" associated with the given user name
-    # 2. Print out the time stamp associated with the first event in that list.
-
-    print("COMPLETE THE TODOs")
-    
-
-
+    result = get_user_info(username)
+    print(result)
