@@ -1,4 +1,5 @@
 
+rmvirtualenv github-latest	;***MMM to remove if it already exists
 mkvirtualenv github-latest
 pip install requests
 

@@ -32,6 +32,7 @@ if __name__ == "__main__":
     
     events = json.loads(response.content)
 
-    print(events[0]['created_at'])
+    git_event_created_at = events[0]['created_at']
+    print(f"Git event for user {username} created at {git_event_created_at}")
     
 
