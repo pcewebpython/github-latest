@@ -1,20 +1,28 @@
 import sys
 import json
-
 import requests
 
-# Use Like python githubber.py JASchilz
-# (or another user name)
+# https://api.github.com/
+# https://api.github.com/feeds
+
+
+def get_response(usr):
+    response = requests.get("https://api.github.com/users/{}/events".format(username))
+    events = json.loads(response.content)
+    # print(events)
+    print(events[0]['created_at'])
+
 
 if __name__ == "__main__":
     username = sys.argv[1]
+    # username = 'geekwriter2'
+    get_response(username)
 
-    # TODO:
-    #
-    # 1. Retrieve a list of "events" associated with the given user name
-    # 2. Print out the time stamp associated with the first event in that list.
 
-    print("COMPLETE THE TODOs")
+
+
+
+
     
 
 
