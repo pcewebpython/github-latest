@@ -7,8 +7,11 @@ import requests
 # (or another user name)
 
 if __name__ == "__main__":
-    username = sys.argv[1]
+    username = sys.argv[0]
 
+    response = requests.get("https://api.github.com/users/{user}".format(user='IanMayther'))
+
+    print(response.json()['events_url'])
     # TODO:
     #
     # 1. Retrieve a list of "events" associated with the given user name
