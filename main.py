@@ -3,21 +3,17 @@ import json
 
 import requests
 
-# Use Like python githubber.py JASchilz
-# (or another user name)
-
 if __name__ == "__main__":
-    username = sys.argv[0]
-
-    response = requests.get("https://api.github.com/users/{user}".format(user='IanMayther'))
-
-    print(response.json()['events_url'])
-    # TODO:
-    #
-    # 1. Retrieve a list of "events" associated with the given user name
-    # 2. Print out the time stamp associated with the first event in that list.
-
-    print("COMPLETE THE TODOs")
+    act_user = True
     
+    while act_user:
+        username = input('Please provide username for event retrival: ')
+        response = requests.get("https://api.github.com/users/{user}/events/public".format(user=username))
+        try:
+            timestamp = response.json()[0]['created_at']
+            print('First Event in List Created at: ', timestamp)
+            act_user = False
+        except IndexError:
+            print('Please confirm User Id is accurate')
 
-
+    print("COMPLETE THE TODOs -- Thank You")
